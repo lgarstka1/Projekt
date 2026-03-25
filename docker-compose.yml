@@ -1,5 +1,3 @@
-version: '3.8'
-
 networks:
   front_net: 
   back_net:  
@@ -10,7 +8,6 @@ volumes:
   seed_output:
 
 services:
-
   db:
     image: postgres:15-alpine
     environment:
@@ -22,7 +19,6 @@ services:
     networks:
       - back_net
 
-
   app:
     build: 
       context: .
@@ -33,7 +29,6 @@ services:
     networks:
       - front_net
       - back_net
-
 
   nginx:
     image: nginx:alpine
@@ -47,13 +42,12 @@ services:
     networks:
       - front_net
 
-
   seed_runner:
     build:
       context: .
       dockerfile: Dockerfile
-      target: builder 
-    command: ["python", "app/seed/run_seed.py"]
+      target: final 
+    command: ["python", "seed/run_seed.py"]
     restart: "no"
     depends_on:
       - db
