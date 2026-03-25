@@ -51,6 +51,8 @@ services:
     restart: "no"
     depends_on:
       - db
+    enviroment:
+      - PYTHON=/app  
     volumes:
       - seed_output:/app/seed_output
     networks:
