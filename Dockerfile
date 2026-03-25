@@ -30,5 +30,6 @@ COPY --from=builder /app/wheels /wheels
 RUN pip install --no-cache /wheels/*
 
 COPY app/src/ /app/src/
+COPY app/seed/ /app/seed/
 
 CMD ["python", "src/app.py"]
