@@ -1,5 +1,7 @@
 import os
 import time
+import sys
+sys.path.append('/app')
 
 from src.app import app, db, Task
 

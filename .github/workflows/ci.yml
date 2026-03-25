@@ -1,0 +1,21 @@
+name: CI Pipeline
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    name: Budowanie i Testy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pobranie kodu repozytorium
+        uses: actions/checkout@v4
+
+      - name: Uruchomienie testow w Dockerze (etap test)
+        run: docker build --target test -t moja-aplikacja-test -f Dockerfile .
+
+      - name: Budowanie finalnego obrazu (etap final)
+        run: docker build --target final -t moja-aplikacja -f Dockerfile .
